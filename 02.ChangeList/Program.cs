@@ -1,4 +1,6 @@
-﻿namespace _02.ChangeList
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace _02.ChangeList
 {
     internal class Program
     {
@@ -13,11 +15,15 @@
                 int number = 0;
                 if (act.Length == 2 && act[0] == "Delete" && int.TryParse(act[1], out number))
                 {
-                    //    integers.Where(x => x == act[1])
+                    integers.RemoveAll(x => x == int.Parse(act[1]));
+                }
+                else if (act.Length == 3 && act[0] == "Insert" && int.TryParse(act[1], out number) && int.TryParse(act[2], out number))
+                {
+                    integers.Insert(int.Parse(act[2]), int.Parse(act[1]));
                 }
             }
 
-            //TO BE SOLVED
+            Console.WriteLine(string.Join(" ", integers));
         }
     }
 }
